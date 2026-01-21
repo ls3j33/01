@@ -10,8 +10,25 @@ def sum_numbers_in_string(input_string: str) -> int:
     Returns:
         Сумма всех найденных целых чисел.
     """
-    # TODO: Реализуйте функцию
-    pass
+    total = 0
+    current_number = ""
+    
+    for char in input_string:
+        if char.isdigit():
+            # Если символ - цифра, добавляем к текущему числу
+            current_number += char
+        else:
+            # Если символ не цифра, заканчиваем текущее число
+            if current_number:
+                total += int(current_number)
+                current_number = ""
+    
+    # Не забываем про последнее число в строке
+    if current_number:
+        total += int(current_number)
+    
+    return total
+
 
 def sum_numbers_in_string_regex(input_string: str) -> int:
     """
@@ -23,5 +40,5 @@ def sum_numbers_in_string_regex(input_string: str) -> int:
     Returns:
         Сумма всех найденных целых чисел.
     """
-    # TODO: Реализуйте функцию
-    pass
+    numbers = re.findall(r'\d+', input_string)
+    return sum(int(num) for num in numbers)
